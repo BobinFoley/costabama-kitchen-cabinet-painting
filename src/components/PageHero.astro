@@ -83,7 +83,10 @@ const srcset = [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).j
     height: 100%;
     max-width: none;
     object-fit: cover;
-    object-position: 60% 50%;
+    /* Mirrored so the cabinets sit on the right, clear of the heading.
+       object-position applies before the flip, so 25% keeps the cabinet side in frame. */
+    object-position: 25% 50%;
+    transform: scaleX(-1);
   }
   .wash {
     position: absolute;
@@ -92,9 +95,9 @@ const srcset = [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).j
     background: linear-gradient(
       90deg,
       rgb(251 250 247 / 0.95) 0%,
-      rgb(251 250 247 / 0.88) 34%,
-      rgb(251 250 247 / 0.35) 60%,
-      rgb(251 250 247 / 0) 80%
+      rgb(251 250 247 / 0.85) 34%,
+      rgb(251 250 247 / 0.2) 55%,
+      rgb(251 250 247 / 0) 68%
     );
   }
 
@@ -131,7 +134,7 @@ const srcset = [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).j
   /* Phones: photo on top, unobstructed; heading on the light band below it. */
   @media (max-width: 720px) {
     .hero.home, .hero.page { min-height: 0; display: block; }
-    .photo { position: relative; inset: auto; z-index: 0; height: auto; aspect-ratio: 4 / 3; max-width: 100%; object-position: 62% 50%; }
+    .photo { position: relative; inset: auto; z-index: 0; height: auto; aspect-ratio: 4 / 3; max-width: 100%; object-position: 30% 50%; }
     .wash { display: none; }
     .content { padding-block: 1.5rem 1.75rem; }
     .tag { justify-self: start; order: -1; font-size: 0.8rem; }
