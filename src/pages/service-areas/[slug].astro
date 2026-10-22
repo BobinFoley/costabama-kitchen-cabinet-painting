@@ -1,5 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import InspirationPhoto from '../../components/InspirationPhoto.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { areas, process, faqs, type Area } from '../../data/site';
 
@@ -14,23 +16,27 @@ const nearby = areas.filter((a) => a.slug !== area.slug);
   title={`Cabinet Painting in ${area.name}, AL`}
   description={`Kitchen cabinet repainting in ${area.name}, Alabama for ${area.homes}. Cabinet-grade sprayed finishes in about five working days. Free estimates.`}
 >
-  <header class="wrap page-head">
-    <p class="eyebrow"><a href="/service-areas/">Service areas</a> / {area.name}</p>
-    <h1>Kitchen cabinet painting in {area.name}</h1>
-    <p class="lede">{area.blurb}</p>
-  </header>
+  <PageHero
+    crumb={{ href: '/service-areas/', label: 'Service areas' }}
+    eyebrow={area.name}
+    title={`Kitchen cabinet painting in ${area.name}`}
+    lede={area.blurb}
+  />
 
   <section class="section wrap grid-2">
     <div class="prose">
       {area.intro.map((p) => <p>{p}</p>)}
       <p>{area.drive}</p>
     </div>
-    <div class="card">
-      <h2 class="h3">Where we work in {area.name}</h2>
-      <ul class="chips">
-        {area.neighborhoods.map((n) => <li>{n}</li>)}
-      </ul>
-      <p>Not on the list? We probably still come to you.</p>
+    <div class="stack-lg">
+      <div class="card">
+        <h2 class="h3">Where we work in {area.name}</h2>
+        <ul class="chips">
+          {area.neighborhoods.map((n) => <li>{n}</li>)}
+        </ul>
+        <p>Not on the list? We probably still come to you.</p>
+      </div>
+      <InspirationPhoto caption={`A two-tone coastal look that suits ${area.homes}.`} />
     </div>
   </section>
 

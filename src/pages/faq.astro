@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import InspirationPhoto from '../components/InspirationPhoto.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { faqs } from '../data/site';
 
@@ -18,12 +20,14 @@ const faqSchema = {
   description="Answers to common questions about kitchen cabinet repainting in Gulf Shores: timing, paint, cost, oak grain, humidity and condo work."
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <header class="wrap page-head">
-    <p class="eyebrow">FAQ</p>
-    <h1>Questions we hear at every estimate</h1>
-  </header>
+  <PageHero
+    eyebrow="FAQ"
+    title="Questions we hear at every estimate"
+    lede="Timing, paint, price, oak grain and beach humidity, answered plainly."
+  />
 
-  <section class="section wrap">
+  <section class="section wrap faq-layout">
+    <div>
     <div class="faq">
       {faqs.map((f, i) => (
         <details open={i === 0}>
@@ -33,6 +37,10 @@ const faqSchema = {
       ))}
     </div>
     <p class="more">Have a question that is not here? <a href="/contact/">Send it to us.</a></p>
+    </div>
+    <aside class="faq-aside">
+      <InspirationPhoto />
+    </aside>
   </section>
 
   <CtaBand />
@@ -62,4 +70,10 @@ const faqSchema = {
   details[open] summary::after { content: '−'; }
   details p { padding-bottom: 1.25rem; color: var(--muted); max-width: 65ch; }
   .more { margin-top: 2rem; }
+  .faq-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+  .faq-aside { position: sticky; top: 6rem; }
+  @media (max-width: 860px) {
+    .faq-layout { grid-template-columns: 1fr; }
+    .faq-aside { position: static; }
+  }
 </style>

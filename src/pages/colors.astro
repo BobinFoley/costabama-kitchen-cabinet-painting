@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import InspirationPhoto from '../components/InspirationPhoto.astro';
 import ShakerDoor from '../components/ShakerDoor.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { colors, palettes } from '../data/site';
@@ -9,13 +11,14 @@ const hexOf = (name: string) => colors.find((c) => c.name === name)?.hex ?? '#cc
   title="Cabinet Color Ideas for Coastal Kitchens"
   description="Coastal cabinet colors for Gulf Shores kitchens, including Coastal Blue with Driftwood Beige and Seafoam with Crisp White, plus Sherwin-Williams and Benjamin Moore matches."
 >
-  <header class="wrap page-head">
-    <p class="eyebrow">Colors</p>
-    <h1>Cabinet colors that work on the coast</h1>
-    <p class="lede">Bright Gulf light washes out pale colors and makes some whites look cold. These are the directions our clients pick most often. We bring real paint samples to your estimate and paint a sample board in your kitchen's light.</p>
-  </header>
+  <PageHero
+    eyebrow="Colors"
+    title="Cabinet colors that work on the coast"
+    lede="Bright Gulf light washes out pale colors and makes some whites look cold. We bring real paint samples to your estimate and paint a sample board in your kitchen's light."
+    secondary={{ href: '#palettes', label: 'See the palettes' }}
+  />
 
-  <section class="section-tight wrap stack-lg">
+  <section class="section-tight wrap stack-lg" id="palettes">
     <div class="stack">
       <p class="eyebrow">Signature palettes</p>
       <h2>Two-tone kitchens for the coast</h2>
@@ -67,6 +70,7 @@ const hexOf = (name: string) => colors.find((c) => c.name === name)?.hex ?? '#cc
       <div class="stack">
         <p class="eyebrow">Sheen</p>
         <h2>Satin or semi-gloss?</h2>
+        <InspirationPhoto caption="Seafoam & Crisp White in a satin finish, which reads closest to factory-made cabinets." />
       </div>
       <div class="stack">
         <p><strong>Satin</strong> is our default. It hides minor surface texture and looks closest to a factory finish.</p>

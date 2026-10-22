@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import InspirationPhoto from '../components/InspirationPhoto.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { services } from '../data/site';
 ---
@@ -7,11 +9,11 @@ import { services } from '../data/site';
   title="Cabinet Painting Services"
   description="Kitchen cabinet repainting, bathroom vanities, contrast islands, hardware updates and condo turnovers in Gulf Shores and south Baldwin County."
 >
-  <header class="wrap page-head">
-    <p class="eyebrow">Services</p>
-    <h1>Cabinet painting, done the slow way where it counts</h1>
-    <p class="lede">Most of the work is prep. That is what keeps a finish from chipping at the edges in a year.</p>
-  </header>
+  <PageHero
+    eyebrow="Services"
+    title="Cabinet painting, done the slow way where it counts"
+    lede="Most of the work is prep. That is what keeps a finish from chipping at the edges in a year."
+  />
 
   <section class="section wrap">
     <div class="grid-3">
@@ -47,6 +49,7 @@ import { services } from '../data/site';
     <div class="stack">
       <p class="eyebrow">Optional add-ons</p>
       <h2>Upgrades people ask for</h2>
+      <InspirationPhoto caption="Two-tone kitchen with brushed nickel pulls: a common pairing with new hardware." />
     </div>
     <dl class="addons">
       <div><dt>Oak grain filling</dt><dd>Fills the open grain on oak for a smooth, modern surface.</dd></div>

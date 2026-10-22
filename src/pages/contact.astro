@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import InspirationPhoto from '../components/InspirationPhoto.astro';
 import { business, areas, otherAreas } from '../data/site';
 const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
 ---
@@ -7,11 +9,12 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
   title="Free Estimate"
   description="Book a free in-home estimate for kitchen cabinet repainting in Gulf Shores, Orange Beach, Foley, Fairhope and nearby."
 >
-  <header class="wrap page-head">
-    <p class="eyebrow">Contact</p>
-    <h1>Book a free estimate</h1>
-    <p class="lede">Tell us a little about your kitchen. We will reply within one business day to set up a visit.</p>
-  </header>
+  <PageHero
+    eyebrow="Contact"
+    title="Book a free estimate"
+    lede="Tell us a little about your kitchen. We will reply within one business day to set up a visit."
+    primary={{ href: '#estimate', label: 'Start my request' }}
+  />
 
   <section class="wrap">
     <p class="sent card" id="sent" role="status" hidden>Thanks, we got your request. We will be in touch within one business day.</p>
@@ -20,7 +23,7 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
 
   <section class="section wrap layout">
     <!-- Handled by the Cloudflare Worker in worker/index.ts -->
-    <form class="card form" name="estimate" method="POST" action="/api/estimate">
+    <form class="card form" id="estimate" name="estimate" method="POST" action="/api/estimate">
       <p class="hp"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
 
       <div class="row">
@@ -82,6 +85,7 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
           <li>You get a written price and a proposed start date.</li>
         </ol>
       </div>
+      <InspirationPhoto caption="Bring photos of kitchens you like to the estimate. We will help you match the colors." />
     </aside>
   </section>
 </Base>

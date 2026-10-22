@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import InspirationPhoto from '../components/InspirationPhoto.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { process } from '../data/site';
 ---
@@ -7,11 +9,11 @@ import { process } from '../data/site';
   title="Our 5-Day Cabinet Painting Process"
   description="What happens each day when Costa Bama repaints your kitchen cabinets: protect, prep, prime, finish and reinstall in about five working days."
 >
-  <header class="wrap page-head">
-    <p class="eyebrow">Our process</p>
-    <h1>The 5-day kitchen</h1>
-    <p class="lede">A typical kitchen of 25 to 35 doors and drawers runs Monday through Friday. Here is what to expect, and what your kitchen looks like each evening.</p>
-  </header>
+  <PageHero
+    eyebrow="Our process"
+    title="The 5-day kitchen"
+    lede="A typical kitchen of 25 to 35 doors and drawers runs Monday through Friday. Here is what to expect, and what your kitchen looks like each evening."
+  />
 
   <section class="section wrap">
     <ol class="days">
@@ -45,17 +47,21 @@ import { process } from '../data/site';
     </div>
   </section>
 
-  <section class="section wrap prose">
-    <p class="eyebrow">After we leave</p>
-    <h2>Curing takes longer than drying</h2>
-    <p>The finish is dry to the touch the day we reinstall, but cabinet enamels keep hardening for two to four weeks, longer in humid summer months. Until then, wipe spills with a soft damp cloth, avoid harsh cleaners, and do not hang wet towels over doors.</p>
-    <p>If a door gets nicked in the first year, call us. We leave labeled touch-up paint with every job.</p>
+  <section class="section wrap grid-2 split">
+    <div class="prose">
+      <p class="eyebrow">After we leave</p>
+      <h2>Curing takes longer than drying</h2>
+      <p>The finish is dry to the touch the day we reinstall, but cabinet enamels keep hardening for two to four weeks, longer in humid summer months. Until then, wipe spills with a soft damp cloth, avoid harsh cleaners, and do not hang wet towels over doors.</p>
+      <p>If a door gets nicked in the first year, call us. We leave labeled touch-up paint with every job.</p>
+    </div>
+    <InspirationPhoto caption="A finished two-tone kitchen. Cabinet enamel keeps hardening for a few weeks after we leave." />
   </section>
 
   <CtaBand />
 </Base>
 
 <style>
+  .split { align-items: center; }
   .days { list-style: none; padding: 0; margin: 0; display: grid; }
   .day {
     display: grid;

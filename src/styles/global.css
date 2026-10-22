@@ -1,23 +1,24 @@
 /* Layout: single centered column (max 72rem) with full-width color bands; paint-chip swatches as the recurring motif.
-   Brand palette: Coastal Blue & Driftwood Beige, with brass-hardware accents. */
+   Brand palette: Coastal Blue & Driftwood Beige, with brass-hardware accents.
+   The site is deliberately light-only (bright and airy), so there is no dark theme. */
 :root {
-  --bg: #f7f6f2;           /* crisp coastal white */
+  color-scheme: light;
+  --bg: #fbfaf7;           /* crisp coastal white */
   --surface: #ffffff;
   --ink: #1f2f3b;
-  --muted: #56646d;
-  --line: #e2dcd1;
-  --blue: #3d6683;         /* deep coastal blue: links, buttons, labels */
+  --muted: #55636c;
+  --line: #e4ddd2;
+  --blue: #2b6a96;         /* coastal blue: links, buttons, labels */
   --blue-ink: #ffffff;
   --blue-soft: #8fb0c7;    /* dusty coastal blue, the cabinet color */
-  --driftwood: #d8cebf;    /* driftwood beige */
+  --driftwood: #e9e2d6;    /* driftwood beige */
   --brass: #b08a52;
-  --band: #2f4b60;
-  --band-ink: #f3f1ec;
-  --band-accent: #d8cebf;
-  /* The estimate band stays driftwood in both themes. */
-  --cta-bg: #d8cebf;
+  --band: #e6eff5;         /* pale coastal-blue band */
+  --band-ink: #1f2f3b;
+  --band-accent: #2b6a96;
+  --cta-bg: #e9e2d6;
   --cta-ink: #1f2f3b;
-  --cta-btn: #3d6683;
+  --cta-btn: #2b6a96;
   --cta-btn-ink: #ffffff;
 
   --font-display: 'Young Serif', Georgia, 'Times New Roman', serif;
@@ -33,25 +34,6 @@
 
   --radius: 6px;
   --max: 72rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121b22;
-    --surface: #1a2630;
-    --ink: #ecebe6;
-    --muted: #a7b3ba;
-    --line: #2c3a45;
-    --blue: #9cc0da;
-    --blue-ink: #13212b;
-    --blue-soft: #8fb0c7;
-    --driftwood: #2e3a44;
-    --brass: #cfa76b;
-    --band: #0d151b;
-    --band-ink: #ecebe6;
-    --band-accent: #cbbfae;
-    color-scheme: dark;
-  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -98,7 +80,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .section-tight { padding-block: clamp(2rem, 5vw, 3.5rem); }
 .stack { display: grid; gap: 1rem; align-content: start; }
 .stack-lg { display: grid; gap: 2rem; align-content: start; }
-.prose { max-width: 65ch; display: grid; gap: 1rem; }
+.prose { max-width: 65ch; display: grid; gap: 1rem; align-content: start; }
 .lede { font-size: var(--step-1); color: var(--muted); max-width: 58ch; }
 
 .eyebrow {
@@ -144,9 +126,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 .band { background: var(--band); color: var(--band-ink); }
 .band .eyebrow { color: var(--band-accent); }
-.band .lede, .band .card p { color: color-mix(in srgb, var(--band-ink) 75%, transparent); }
+.band .lede, .band .card p { color: var(--muted); }
 
-.page-head { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; display: grid; gap: 1rem; }
 
 .check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
 .check-list li { padding-left: 1.6rem; position: relative; }

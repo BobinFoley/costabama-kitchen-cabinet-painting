@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import HeroBanner from '../components/HeroBanner.astro';
+import PageHero from '../components/PageHero.astro';
+import InspirationPhoto from '../components/InspirationPhoto.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { business, services, process, areas, otherAreas } from '../data/site';
 ---
@@ -8,7 +9,13 @@ import { business, services, process, areas, otherAreas } from '../data/site';
   title="Home"
   description="Kitchen cabinet repainting in Gulf Shores, Orange Beach, Foley and Fairhope. Sprayed, cabinet-grade finishes in about five working days. Free in-home estimates."
 >
-  <HeroBanner />
+  <PageHero
+    size="home"
+    eyebrow="Gulf Shores · Orange Beach · Foley · Fairhope"
+    title="New-looking cabinets in about five working days."
+    lede="We repaint kitchen cabinets across south Baldwin County. Doors are sprayed in our shop, frames are finished in place, and you keep your counters, plumbing and layout."
+    secondary={{ href: '/colors/', label: 'See the palettes' }}
+  />
 
   <section class="wrap promises" aria-label="What every job includes">
     <ul class="check-list">
@@ -58,6 +65,7 @@ import { business, services, process, areas, otherAreas } from '../data/site';
         <p class="eyebrow">Repaint or replace?</p>
         <h2>If the boxes are solid, paint them.</h2>
         <p class="lede">New cabinets mean demolition, new countertops in many cases, and weeks without a kitchen. Repainting keeps what works and changes what you see.</p>
+        <InspirationPhoto caption="Same cabinet boxes, new color: seafoam lowers and island with crisp white uppers." />
       </div>
       <div class="table-wrap">
         <table>

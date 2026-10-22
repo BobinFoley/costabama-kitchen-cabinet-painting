@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import InspirationPhoto from '../components/InspirationPhoto.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { business } from '../data/site';
 ---
@@ -7,10 +9,11 @@ import { business } from '../data/site';
   title="About Us"
   description="Costa Bama is a Gulf Shores cabinet painting company focused on one thing: durable, factory-smooth cabinet finishes for coastal Alabama homes."
 >
-  <header class="wrap page-head">
-    <p class="eyebrow">About</p>
-    <h1>One trade, done well</h1>
-  </header>
+  <PageHero
+    eyebrow="About"
+    title="One trade, done well"
+    lede="A Gulf Shores company that paints cabinets and nothing else."
+  />
 
   <section class="section wrap grid-2">
     <div class="prose">
@@ -18,6 +21,7 @@ import { business } from '../data/site';
       <p>Cabinets are the hardest thing in a house to paint well. They get grabbed, bumped, steamed and wiped every day. A finish that looks fine on a wall will chip on a cabinet door in months. Doing only cabinets lets us keep the right sprayers, primers and drying setup for the job, and lets our crew get very good at it.</p>
       <p>We started the business because so many kitchens along the coast are in good shape structurally but look dated: honey oak, cherry stain, or builder white that has gone yellow. Repainting is usually the fastest and most affordable way to fix that.</p>
       <!-- TODO: add owner name, founding year and a short personal story -->
+      <InspirationPhoto caption="The kind of bright coastal kitchen we like to help people get without a remodel." />
     </div>
     <div class="stack">
       <div class="card">
