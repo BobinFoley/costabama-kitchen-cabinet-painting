@@ -18,7 +18,7 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
 
   <section class="wrap">
     <p class="sent card" id="sent" role="status" hidden>Thanks, we got your request. We will be in touch within one business day.</p>
-    <p class="sent card error" id="send-error" role="alert" hidden>Your request did not go through. Please call or email us using the details on this page.</p>
+    <p class="sent card error" id="send-error" role="alert" hidden>Your request did not go through. Please call us at the number on this page.</p>
   </section>
 
   <section class="section wrap layout">
@@ -72,10 +72,6 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
         <h2 class="h3">Call or text</h2>
         <p><a class="big" href={business.phoneHref}>{business.phone}</a></p>
         <p class="muted">{business.hours}</p>
-      </div>
-      <div class="stack">
-        <h2 class="h3">Email</h2>
-        <p><a href={`mailto:${business.email}`}>{business.email}</a></p>
       </div>
       <div class="stack">
         <h2 class="h3">What happens next</h2>

@@ -5,7 +5,6 @@ export const business = {
   tagline: 'Factory-smooth cabinet finishes for Gulf Coast kitchens',
   phone: '(251) 765-0333',
   phoneHref: 'tel:+12517650333',
-  email: 'hello@coastalbamacabinets.com', // TODO: real email
   city: 'Gulf Shores',
   region: 'AL',
   county: 'Baldwin County',
