@@ -1,6 +1,6 @@
 # Coastal Bama Kitchen Cabinet Repainting
 
-Marketing site for a kitchen cabinet repainting business in Gulf Shores, AL. Built with Astro (static output) and hosted on Cloudflare Workers (static assets plus a small Worker for the estimate form).
+Marketing site for a kitchen cabinet repainting business in Gulf Shores, AL. Built with Astro (static output) and hosted on Netlify (static site plus one Netlify Function for the estimate form).
 
 ## Pages
 
@@ -17,29 +17,24 @@ Requires Node 22.12 or newer.
 ```sh
 npm install
 npm run dev       # Astro dev server at http://localhost:4321
-npm run cf:dev    # build, then run the Worker locally with Cloudflare's runtime (includes the form handler)
 ```
 
-## Deploy to Cloudflare
+## Deploy to Netlify
 
-The repo is connected to a Cloudflare Worker with Git builds:
+The repo is connected to Netlify, which rebuilds on every push to `main`. Build settings live in `netlify.toml`:
 
 - Build command: `npm run build`
-- Deploy command: `npx wrangler deploy`
-
-`wrangler.toml` points the Worker at `worker/index.ts` and serves the built site from `dist/`. Every push to `main` redeploys.
-
-To deploy from your own machine instead: `npx wrangler login`, then `npm run deploy`.
+- Publish directory: `dist`
+- Node 22
+- `www.coastalbamacabinets.com` redirects to `coastalbamacabinets.com`
 
 ## Estimate form
 
-`/contact/` posts to `/api/estimate`, handled by `worker/index.ts`. It needs at least one delivery method set under the Worker's Settings > Variables and Secrets:
+`/contact/` posts to `/api/estimate`, handled by the Netlify Function in `netlify/functions/estimate.mts`. Set at least one delivery method under Netlify > Project configuration > Environment variables (scope must include Functions):
 
 | Variable | Purpose |
 | --- | --- |
-| `RESEND_API_KEY` | API key from [resend.com](https://resend.com), to email each request |
-| `TO_EMAIL` | Inbox that receives requests |
-| `FROM_EMAIL` | Sender on a domain verified in Resend, e.g. `Website <estimates@yourdomain.com>` |
-| `WEBHOOK_URL` | Optional. Each request is also POSTed here as JSON (Make, Zapier, a CRM) |
-
-For local testing, put the same values in a `.dev.vars` file (git-ignored) and run `npm run cf:dev`.
+| `WEBHOOK_URL` | Each request is POSTed here as JSON (currently a Zapier catch hook) |
+| `RESEND_API_KEY` | Optional. API key from [resend.com](https://resend.com), to also email each request |
+| `TO_EMAIL` | Optional. Inbox that receives emailed requests |
+| `FROM_EMAIL` | Optional. Sender on a domain verified in Resend |

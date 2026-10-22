@@ -6,15 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "cf:dev": "astro build && wrangler dev",
-    "deploy": "astro build && wrangler deploy"
+    "preview": "astro preview"
   },
   "dependencies": {
     "astro": "^6.4.8"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261022.1",
-    "wrangler": "^4.140.0"
+    "@netlify/functions": "^6.0.3"
   }
 }
