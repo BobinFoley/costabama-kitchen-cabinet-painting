@@ -21,12 +21,12 @@
   --cta-btn: #2b6a96;
   --cta-btn-ink: #ffffff;
 
-  --font-display: 'Young Serif', Georgia, 'Times New Roman', serif;
-  --font-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --font-display: 'Poppins', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Poppins', 'Avenir Next', 'Segoe UI', system-ui, sans-serif; /* labels, buttons, menu */
 
   --step--1: 0.875rem;
-  --step-0: 1.0625rem;
+  --step-0: 1rem;
   --step-1: 1.3rem;
   --step-2: 1.7rem;
   --step-3: clamp(2rem, 4vw, 2.6rem);
@@ -46,15 +46,16 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 img, svg { max-width: 100%; }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.15;
+  letter-spacing: -0.015em;
   text-wrap: balance;
   margin: 0;
 }
@@ -84,7 +85,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .lede { font-size: var(--step-1); color: var(--muted); max-width: 58ch; }
 
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-ui);
   font-size: var(--step--1);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -102,6 +103,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   border: 2px solid transparent;
   cursor: pointer;
   font: inherit;
+  font-family: var(--font-ui);
   font-weight: 600;
 }
 .btn-primary { background: var(--blue); color: var(--blue-ink); }

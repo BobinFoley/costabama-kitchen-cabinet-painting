@@ -104,13 +104,13 @@ const hexOf = (name: string) => colors.find((c) => c.name === name)?.hex ?? '#cc
   .chip-body { padding: 1rem 1.25rem 1.25rem; display: grid; gap: 0.4rem; align-content: start; }
   .chip-body h2 { font-size: var(--step-1); }
   .chip-body p { color: var(--muted); font-size: var(--step--1); }
-  .mono { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+  .mono { font-family: var(--font-ui); font-size: var(--step--1); color: var(--muted); }
   .palette .pair { display: flex; gap: 1rem; padding: 1.25rem; background: var(--driftwood); border-radius: 4px; justify-content: center; }
   .pair-door { width: min(7rem, 40%); }
   .roles { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; border-top: 1px solid var(--line); padding-top: 0.75rem; }
-  .roles dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .roles dt { font-family: var(--font-ui); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
   .roles dd { margin: 0; font-weight: 600; }
   .matches { display: grid; gap: 0.15rem; }
-  .matches .label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); }
+  .matches .label { font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); }
   .note { margin-top: 1.5rem; color: var(--muted); font-size: var(--step--1); max-width: 65ch; }
 </style>

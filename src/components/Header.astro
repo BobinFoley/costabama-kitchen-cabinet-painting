@@ -68,8 +68,8 @@ const path = Astro.url.pathname;
     color: var(--ink);
   }
   .brand-text { display: grid; line-height: 1.1; }
-  .brand-text strong { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; }
-  .brand-text small { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .brand-text strong { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; }
+  .brand-text small { font-family: var(--font-ui); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 
   .chip-stack { display: grid; grid-template-rows: repeat(3, 0.5rem); width: 1.6rem; border-radius: 3px; overflow: hidden; }
   .chip-stack i:nth-child(1) { background: #d8cebf; }
@@ -80,6 +80,7 @@ const path = Astro.url.pathname;
   .nav-desktop a:not(.btn), .nav-mobile nav a:not(.btn) {
     color: var(--ink);
     text-decoration: none;
+    font-family: var(--font-ui);
     font-weight: 500;
   }
   .nav-desktop a[aria-current='page']:not(.btn) { color: var(--blue); text-decoration: underline; text-decoration-thickness: 2px; }
@@ -91,6 +92,7 @@ const path = Astro.url.pathname;
     padding: 0.5rem 0.9rem;
     border: 1px solid var(--line);
     border-radius: var(--radius);
+    font-family: var(--font-ui);
     font-weight: 600;
   }
   .nav-mobile summary::-webkit-details-marker { display: none; }
