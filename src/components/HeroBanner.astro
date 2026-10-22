@@ -1,0 +1,180 @@
+---
+// Full-width photo banner for the home page. Two design-inspiration kitchens,
+// switchable with the palette buttons; the first one loads with the page.
+const slides = [
+  {
+    slug: 'coastal-blue-driftwood-kitchen',
+    palette: 'Coastal Blue & Driftwood Beige',
+    alt: 'Beach house kitchen with driftwood beige upper cabinets, dusty coastal blue lower cabinets and island, brass pulls, and a view of the Gulf through sliding doors.',
+    swatches: ['#d8cebf', '#8fb0c7'],
+  },
+  {
+    slug: 'seafoam-crisp-white-kitchen',
+    palette: 'Seafoam & Crisp White',
+    alt: 'Beach house kitchen with crisp white upper cabinets, seafoam green lower cabinets and island, white quartz counters, and windows facing the dunes and Gulf.',
+    swatches: ['#f3f1ea', '#a9c7ba'],
+  },
+];
+const srcset = (slug: string) => [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).join(', ');
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="slides">
+    {slides.map((s, i) => (
+      <img
+        class="slide"
+        data-slide={i}
+        src={`/images/${s.slug}-1400.webp`}
+        srcset={srcset(s.slug)}
+        sizes="100vw"
+        width="2000"
+        height="1116"
+        alt={s.alt}
+        loading={i === 0 ? 'eager' : 'lazy'}
+        fetchpriority={i === 0 ? 'high' : 'auto'}
+        decoding="async"
+        aria-hidden={i === 0 ? undefined : 'true'}
+        hidden={i !== 0}
+      />
+    ))}
+  </div>
+  <div class="shade" aria-hidden="true"></div>
+
+  <div class="wrap content">
+    <div class="copy">
+      <p class="eyebrow">Gulf Shores · Orange Beach · Foley · Fairhope</p>
+      <h1 id="hero-title">New-looking cabinets in about five working days.</h1>
+      <p class="lede">
+        We repaint kitchen cabinets across south Baldwin County. Doors are sprayed in our shop, frames are finished in place, and you keep your counters, plumbing and layout.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="/contact/">Book a free estimate</a>
+        <a class="btn btn-ghost" href="/colors/">See the palettes</a>
+      </div>
+    </div>
+
+    <div class="caption">
+      <p class="tag">Design inspiration</p>
+      <div class="palettes" role="group" aria-label="Choose a design inspiration palette">
+        {slides.map((s, i) => (
+          <button type="button" class="palette" data-target={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+            <span class="chips" aria-hidden="true">
+              {s.swatches.map((c) => <i style={`background:${c}`}></i>)}
+            </span>
+            {s.palette}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll<HTMLImageElement>('.hero .slide');
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.hero .palette');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.target;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      slides.forEach((img) => {
+        const on = img.dataset.slide === target;
+        img.hidden = false;
+        img.classList.toggle('off', !on);
+        if (on) img.removeAttribute('aria-hidden');
+        else img.setAttribute('aria-hidden', 'true');
+      });
+    });
+  });
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    color: #ffffff;
+    background: #2f4b60;
+    min-height: clamp(34rem, 72vh, 46rem);
+    display: grid;
+    overflow: hidden;
+  }
+  .slides { position: absolute; inset: 0; z-index: -2; }
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: 60% 50%;
+    transition: opacity 0.6s ease;
+  }
+  .slide.off { opacity: 0; }
+  .shade {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgb(20 34 45 / 0.82) 0%, rgb(20 34 45 / 0.6) 38%, rgb(20 34 45 / 0.08) 70%, transparent 100%),
+      linear-gradient(0deg, rgb(20 34 45 / 0.55) 0%, transparent 30%);
+  }
+
+  .content {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 2rem;
+    padding-block: clamp(3rem, 8vw, 5.5rem) 1.5rem;
+    width: 100%;
+  }
+  .copy { display: grid; gap: 1.25rem; align-content: center; max-width: 36rem; }
+  .copy .eyebrow { color: #d8cebf; }
+  .copy h1 { text-shadow: 0 2px 18px rgb(0 0 0 / 0.25); }
+  .copy .lede { color: rgb(255 255 255 / 0.88); }
+  .copy .btn-primary { background: #ffffff; color: #1f2f3b; }
+  .copy .btn-ghost { color: #ffffff; }
+
+  .caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.85);
+  }
+  .palettes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .palette {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font: inherit;
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: #ffffff;
+    background: rgb(20 34 45 / 0.55);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgb(255 255 255 / 0.35);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem 0.45rem 0.5rem;
+    cursor: pointer;
+  }
+  .palette[aria-pressed='true'] { background: #ffffff; color: #1f2f3b; border-color: #ffffff; }
+  .chips { display: inline-flex; }
+  .chips i { width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1px solid rgb(0 0 0 / 0.15); }
+  .chips i + i { margin-left: -0.35rem; }
+
+  /* Phones: photo on top, unobstructed; copy on the blue band below it. */
+  @media (max-width: 720px) {
+    .hero { min-height: 0; display: block; }
+    .slides { position: relative; inset: auto; z-index: 0; aspect-ratio: 4 / 3; max-width: 100%; }
+    .slide { object-position: 62% 50%; }
+    .shade { display: none; }
+    .content { padding-block: 1.75rem 1.75rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: none; }
+  }
+</style>
