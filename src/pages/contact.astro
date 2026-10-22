@@ -15,12 +15,12 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
 
   <section class="wrap">
     <p class="sent card" id="sent" role="status" hidden>Thanks, we got your request. We will be in touch within one business day.</p>
+    <p class="sent card error" id="send-error" role="alert" hidden>Your request did not go through. Please call or email us using the details on this page.</p>
   </section>
 
   <section class="section wrap layout">
-    <!-- The data-netlify attribute enables Netlify Forms. On another host, point this form at your form service. -->
-    <form class="card form" name="estimate" method="POST" action="/contact/?sent=1" data-netlify="true" netlify-honeypot="company">
-      <input type="hidden" name="form-name" value="estimate" />
+    <!-- Handled by the Cloudflare Pages Function in functions/api/estimate.ts -->
+    <form class="card form" name="estimate" method="POST" action="/api/estimate">
       <p class="hp"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
 
       <div class="row">
@@ -87,14 +87,16 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
 </Base>
 
 <script>
-  if (new URLSearchParams(location.search).has('sent')) {
-    const sent = document.getElementById('sent');
-    if (sent) sent.hidden = false;
-  }
+  const params = new URLSearchParams(location.search);
+  const sent = document.getElementById('sent');
+  const sendError = document.getElementById('send-error');
+  if (params.has('sent') && sent) sent.hidden = false;
+  if (params.has('error') && sendError) sendError.hidden = false;
 </script>
 
 <style>
   .sent { margin-top: 1.5rem; border-color: var(--gulf); font-weight: 600; }
+  .sent.error { border-color: #b3412e; }
   [hidden] { display: none !important; }
   .layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
   .form { gap: 1.1rem; padding: clamp(1.25rem, 3vw, 2rem); }
