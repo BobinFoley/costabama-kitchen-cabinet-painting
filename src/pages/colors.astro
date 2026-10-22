@@ -2,11 +2,12 @@
 import Base from '../layouts/Base.astro';
 import ShakerDoor from '../components/ShakerDoor.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { colors } from '../data/site';
+import { colors, palettes } from '../data/site';
+const hexOf = (name: string) => colors.find((c) => c.name === name)?.hex ?? '#cccccc';
 ---
 <Base
   title="Cabinet Color Ideas for Coastal Kitchens"
-  description="Cabinet paint color ideas for Gulf Shores and Orange Beach kitchens: warm whites, sea-glass greens, coastal navy and more."
+  description="Coastal cabinet colors for Gulf Shores kitchens, including Coastal Blue with Driftwood Beige and Seafoam with Crisp White, plus Sherwin-Williams and Benjamin Moore matches."
 >
   <header class="wrap page-head">
     <p class="eyebrow">Colors</p>
@@ -14,7 +15,35 @@ import { colors } from '../data/site';
     <p class="lede">Bright Gulf light washes out pale colors and makes some whites look cold. These are the directions our clients pick most often. We bring real paint samples to your estimate and paint a sample board in your kitchen's light.</p>
   </header>
 
-  <section class="section wrap">
+  <section class="section-tight wrap stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Signature palettes</p>
+      <h2>Two-tone kitchens for the coast</h2>
+      <p class="lede">Our most requested look: lighter uppers with colored lowers and island.</p>
+    </div>
+    <div class="grid-2">
+      {palettes.map((pal) => (
+        <article class="card palette">
+          <div class="pair" aria-hidden="true">
+            <div class="pair-door"><ShakerDoor color={hexOf(pal.upper)} label="" /></div>
+            <div class="pair-door"><ShakerDoor color={hexOf(pal.lower)} label="" /></div>
+          </div>
+          <h3>{pal.name}</h3>
+          <p>{pal.body}</p>
+          <dl class="roles">
+            <div><dt>Uppers</dt><dd>{pal.upper}</dd></div>
+            <div><dt>Lowers &amp; island</dt><dd>{pal.lower}</dd></div>
+          </dl>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Colors and paint matches</p>
+      <h2>Pick a starting point</h2>
+    </div>
     <ul class="swatches">
       {colors.map((c) => (
         <li class="chip">
@@ -22,12 +51,15 @@ import { colors } from '../data/site';
           <div class="chip-body">
             <h2>{c.name}</h2>
             <p>{c.note}</p>
+            {c.matches && (
+              <p class="matches"><span class="label">Paint matches</span>{c.matches.join(' · ')}</p>
+            )}
             <span class="mono">{c.hex}</span>
           </div>
         </li>
       ))}
     </ul>
-    <p class="note">Screen colors are approximate. Your final color is chosen from manufacturer paint chips and a sample board, and can be matched to any brand's color.</p>
+    <p class="note">Screen colors are approximate. SW is Sherwin-Williams and BM is Benjamin Moore. Your final color is chosen from real paint chips and a sample board in your kitchen, and we can match any brand.</p>
   </section>
 
   <section class="band section">
@@ -64,10 +96,17 @@ import { colors } from '../data/site';
     display: grid;
     grid-template-rows: auto 1fr;
   }
-  .chip-door { padding: 1.5rem 3rem; background: var(--sand); }
+  .chip-door { padding: 1.5rem 3rem; background: var(--driftwood); }
   .chip-body { padding: 1rem 1.25rem 1.25rem; display: grid; gap: 0.4rem; align-content: start; }
   .chip-body h2 { font-size: var(--step-1); }
   .chip-body p { color: var(--muted); font-size: var(--step--1); }
   .mono { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+  .palette .pair { display: flex; gap: 1rem; padding: 1.25rem; background: var(--driftwood); border-radius: 4px; justify-content: center; }
+  .pair-door { width: min(7rem, 40%); }
+  .roles { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; border-top: 1px solid var(--line); padding-top: 0.75rem; }
+  .roles dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .roles dd { margin: 0; font-weight: 600; }
+  .matches { display: grid; gap: 0.15rem; }
+  .matches .label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); }
   .note { margin-top: 1.5rem; color: var(--muted); font-size: var(--step--1); max-width: 65ch; }
 </style>

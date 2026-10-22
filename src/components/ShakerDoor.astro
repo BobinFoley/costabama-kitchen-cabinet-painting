@@ -4,7 +4,7 @@ interface Props {
   color?: string;
   label?: string;
 }
-const { color = '#24384a', label = 'Shaker cabinet door' } = Astro.props;
+const { color = '#8fb0c7', label = 'Shaker cabinet door' } = Astro.props;
 ---
 <svg class="door" viewBox="0 0 200 300" role="img" aria-label={label} style={`--door:${color}`}>
   <rect x="2" y="2" width="196" height="296" rx="3" class="face" />

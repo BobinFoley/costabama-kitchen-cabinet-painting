@@ -1,17 +1,24 @@
-/* Layout: single centered column (max 72rem) with full-width color bands; paint-chip swatches as the recurring motif. */
+/* Layout: single centered column (max 72rem) with full-width color bands; paint-chip swatches as the recurring motif.
+   Brand palette: Coastal Blue & Driftwood Beige, with brass-hardware accents. */
 :root {
-  --bg: #f3f5f3;
+  --bg: #f7f6f2;           /* crisp coastal white */
   --surface: #ffffff;
-  --ink: #16242e;
-  --muted: #4d5d66;
-  --line: #d5ddda;
-  --gulf: #1f5e66;
-  --gulf-ink: #ffffff;
-  --sand: #e6dcc6;
-  --sun: #e8a33d;
-  --sun-ink: #16242e;
-  --band: #16242e;
-  --band-ink: #eef2f1;
+  --ink: #1f2f3b;
+  --muted: #56646d;
+  --line: #e2dcd1;
+  --blue: #3d6683;         /* deep coastal blue: links, buttons, labels */
+  --blue-ink: #ffffff;
+  --blue-soft: #8fb0c7;    /* dusty coastal blue, the cabinet color */
+  --driftwood: #d8cebf;    /* driftwood beige */
+  --brass: #b08a52;
+  --band: #2f4b60;
+  --band-ink: #f3f1ec;
+  --band-accent: #d8cebf;
+  /* The estimate band stays driftwood in both themes. */
+  --cta-bg: #d8cebf;
+  --cta-ink: #1f2f3b;
+  --cta-btn: #3d6683;
+  --cta-btn-ink: #ffffff;
 
   --font-display: 'Young Serif', Georgia, 'Times New Roman', serif;
   --font-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -30,18 +37,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #101a21;
-    --surface: #17242d;
-    --ink: #e8eeed;
-    --muted: #a3b2b6;
-    --line: #2a3a44;
-    --gulf: #6fb3b8;
-    --gulf-ink: #0d1a1f;
-    --sand: #22313a;
-    --sun: #f0b456;
-    --sun-ink: #16242e;
-    --band: #0a1217;
-    --band-ink: #e8eeed;
+    --bg: #121b22;
+    --surface: #1a2630;
+    --ink: #ecebe6;
+    --muted: #a7b3ba;
+    --line: #2c3a45;
+    --blue: #9cc0da;
+    --blue-ink: #13212b;
+    --blue-soft: #8fb0c7;
+    --driftwood: #2e3a44;
+    --brass: #cfa76b;
+    --band: #0d151b;
+    --band-ink: #ecebe6;
+    --band-accent: #cbbfae;
     color-scheme: dark;
   }
 }
@@ -73,9 +81,9 @@ h2 { font-size: var(--step-3); }
 h3 { font-size: var(--step-1); }
 p { margin: 0; }
 
-a { color: var(--gulf); text-underline-offset: 3px; }
+a { color: var(--blue); text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
-  outline: 3px solid var(--sun);
+  outline: 3px solid var(--brass);
   outline-offset: 2px;
 }
 
@@ -98,7 +106,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-size: var(--step--1);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gulf);
+  color: var(--blue);
 }
 
 .btn {
@@ -114,8 +122,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font: inherit;
   font-weight: 600;
 }
-.btn-primary { background: var(--sun); color: var(--sun-ink); }
-.btn-primary:hover { filter: brightness(1.05); }
+.btn-primary { background: var(--blue); color: var(--blue-ink); }
+.btn-primary:hover { filter: brightness(1.1); }
 .btn-ghost { border-color: currentColor; color: inherit; background: transparent; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
@@ -135,7 +143,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .card p { color: var(--muted); }
 
 .band { background: var(--band); color: var(--band-ink); }
-.band .eyebrow { color: var(--sun); }
+.band .eyebrow { color: var(--band-accent); }
 .band .lede, .band .card p { color: color-mix(in srgb, var(--band-ink) 75%, transparent); }
 
 .page-head { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; display: grid; gap: 1rem; }
@@ -150,7 +158,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 2px;
-  background: var(--gulf);
+  background: var(--brass);
 }
 
 .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0; }

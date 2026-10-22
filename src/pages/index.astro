@@ -4,7 +4,7 @@ import ShakerDoor from '../components/ShakerDoor.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { business, services, process, areas, otherAreas, colors } from '../data/site';
 
-const heroColors = colors.filter((c) => ['Gulf Navy', 'Bon Secour Green', 'Bay Fog', 'Bleached Shell', 'Pier Piling'].includes(c.name));
+const heroColors = colors.filter((c) => ['Coastal Blue', 'Driftwood Beige', 'Seafoam', 'Crisp Coastal White', 'Gulf Navy'].includes(c.name));
 ---
 <Base
   title="Home"
@@ -171,7 +171,7 @@ const heroColors = colors.filter((c) => ['Gulf Navy', 'Bon Secour Green', 'Bay F
     margin: 0;
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    border-top: 2px solid var(--sun);
+    border-top: 2px solid var(--band-accent);
   }
   .timeline li { padding: 1rem 1rem 0 0; display: grid; gap: 0.4rem; position: relative; }
   .timeline li::before {
@@ -182,9 +182,9 @@ const heroColors = colors.filter((c) => ['Gulf Navy', 'Bon Secour Green', 'Bay F
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--sun);
+    background: var(--band-accent);
   }
-  .timeline .day { color: var(--sun); }
+  .timeline .day { color: var(--band-accent); }
   .on-band { color: var(--band-ink); }
 
   .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 2rem; align-items: center; }
@@ -193,16 +193,16 @@ const heroColors = colors.filter((c) => ['Gulf Navy', 'Bon Secour Green', 'Bay F
   th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--line); }
   thead th { font-family: var(--font-mono); font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
   tbody th { font-weight: 600; }
-  td:nth-child(2) { color: var(--gulf); font-weight: 600; }
+  td:nth-child(2) { color: var(--blue); font-weight: 600; }
 
   .areas { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1.5rem; }
   .area-card { text-decoration: none; color: var(--ink); transition: border-color 0.2s; }
-  .area-card:hover { border-color: var(--gulf); }
+  .area-card:hover { border-color: var(--blue); }
   .muted { color: var(--muted); }
 
   @media (max-width: 820px) {
     .hero { grid-template-columns: 1fr; }
-    .timeline { grid-template-columns: 1fr; border-top: 0; border-left: 2px solid var(--sun); }
+    .timeline { grid-template-columns: 1fr; border-top: 0; border-left: 2px solid var(--band-accent); }
     .timeline li { padding: 0 0 1.25rem 1.25rem; }
     .timeline li::before { top: 0.35rem; left: -7px; }
   }

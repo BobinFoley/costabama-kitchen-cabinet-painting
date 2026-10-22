@@ -176,13 +176,50 @@ export const faqs = [
   },
 ];
 
+// Hex values are screen approximations; `matches` are the closest store paint colors.
 export const colors = [
-  { name: 'Bleached Shell', hex: '#EEE9DE', note: 'Warm white that does not turn yellow next to sand-tone counters.' },
-  { name: 'Dune Grass', hex: '#B8B392', note: 'Soft green-beige that hides fingerprints well.' },
-  { name: 'Bay Fog', hex: '#9FB1B3', note: 'Muted blue-gray that works with white quartz.' },
-  { name: 'Sea Oats', hex: '#D7C6A3', note: 'Light tan for lower cabinets under white uppers.' },
+  {
+    name: 'Coastal Blue',
+    hex: '#8FB0C7',
+    note: 'Dusty sky blue for lowers and islands. Pulls from the Gulf horizon.',
+    matches: ['SW Lullaby (SW 9136)', 'SW Niebla Azul (SW 9137)', 'BM Beach Glass (1564)'],
+  },
+  {
+    name: 'Driftwood Beige',
+    hex: '#D8CEBF',
+    note: 'Light natural taupe for uppers and pantries, like dune sand and weathered wood.',
+    matches: ['SW Accessible Beige (SW 7036)', 'SW Drift of Mist (SW 9166)', 'BM Pale Oak (OC-20)'],
+  },
+  {
+    name: 'Seafoam',
+    hex: '#A9C7BA',
+    note: 'Muted sage with an aqua undertone, like the shallow emerald water.',
+    matches: ['SW Sea Salt (SW 6204)', 'SW Comfort Gray (SW 6205)', 'BM Healing Aloe (1562)'],
+  },
+  {
+    name: 'Crisp Coastal White',
+    hex: '#F3F1EA',
+    note: 'Clean white with a little warmth. Matches white quartz and trim.',
+    matches: ['SW Pure White (SW 7005)', 'BM Chantilly Lace (OC-65)'],
+  },
   { name: 'Pelican Gray', hex: '#7D817E', note: 'Mid gray for full kitchens or islands.' },
   { name: 'Bon Secour Green', hex: '#4E6152', note: 'Deep green for islands and bars.' },
   { name: 'Gulf Navy', hex: '#24384A', note: 'Classic coastal navy island color.' },
   { name: 'Pier Piling', hex: '#3A3734', note: 'Near-black for a modern kitchen.' },
+] as { name: string; hex: string; note: string; matches?: string[] }[];
+
+// Two-tone combinations: lighter uppers over colored lowers and island.
+export const palettes = [
+  {
+    name: 'Coastal Blue & Driftwood Beige',
+    upper: 'Driftwood Beige',
+    lower: 'Coastal Blue',
+    body: 'Driftwood beige on the uppers and pantry, dusty coastal blue on the lowers and island. Warm and relaxed, and it pairs well with brass hardware and light oak floors.',
+  },
+  {
+    name: 'Seafoam & Crisp White',
+    upper: 'Crisp Coastal White',
+    lower: 'Seafoam',
+    body: 'Crisp white uppers keep the room bright; seafoam lowers and island bring in the color of the water. Brushed nickel hardware suits this one best.',
+  },
 ];

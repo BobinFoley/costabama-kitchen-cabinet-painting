@@ -16,15 +16,15 @@ const {
       <p>{text}</p>
     </div>
     <div class="btn-row">
-      <a class="btn btn-dark" href="/contact/">Book a free estimate</a>
+      <a class="btn btn-cta" href="/contact/">Book a free estimate</a>
       <a class="btn btn-ghost" href={business.phoneHref}>Call {business.phone}</a>
     </div>
   </div>
 </section>
 
 <style>
-  .cta { background: var(--sun); color: var(--sun-ink); }
+  .cta { background: var(--cta-bg); color: var(--cta-ink); }
   .inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
   .inner .stack { max-width: 40rem; }
-  .btn-dark { background: #16242e; color: #ffffff; }
+  .btn-cta { background: var(--cta-btn); color: var(--cta-btn-ink); }
 </style>
