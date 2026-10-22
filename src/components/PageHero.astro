@@ -26,13 +26,17 @@ const {
 } = Astro.props;
 
 const slug = 'coastal-blue-driftwood-kitchen';
-const srcset = [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).join(', ');
+const webp = [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).join(', ');
+// JPEG fallback for browsers and testing tools without WebP support.
+const jpg = [800, 1400].map((w) => `/images/${slug}-${w}.jpg ${w}w`).join(', ');
 ---
 <section class:list={['hero', size]} aria-labelledby="page-title">
+  <picture>
+  <source type="image/webp" srcset={webp} sizes="100vw" />
   <img
     class="photo"
-    src={`/images/${slug}-1400.webp`}
-    srcset={srcset}
+    src={`/images/${slug}-1400.jpg`}
+    srcset={jpg}
     sizes="100vw"
     width="2000"
     height="1116"
@@ -41,6 +45,7 @@ const srcset = [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).j
     fetchpriority="high"
     decoding="async"
   />
+  </picture>
   <div class="wash" aria-hidden="true"></div>
 
   <div class="wrap content">
@@ -75,6 +80,7 @@ const srcset = [800, 1400, 2000].map((w) => `/images/${slug}-${w}.webp ${w}w`).j
   .hero.home { min-height: clamp(34rem, 72vh, 46rem); }
   .hero.page { min-height: clamp(24rem, 52vh, 32rem); }
 
+  picture { display: contents; }
   .photo {
     position: absolute;
     inset: 0;
