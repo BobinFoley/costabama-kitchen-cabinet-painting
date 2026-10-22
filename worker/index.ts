@@ -1,11 +1,12 @@
-// Cloudflare Pages Function: receives the estimate form from /contact/.
-// Set these in Cloudflare (Pages project > Settings > Variables and Secrets):
+// Cloudflare Worker: serves the built site from ./dist and handles the estimate form.
+// Set these in Cloudflare (Worker > Settings > Variables and Secrets):
 //   RESEND_API_KEY  – API key from resend.com, to email each request
 //   TO_EMAIL        – where requests are sent, e.g. the owner's inbox
 //   FROM_EMAIL      – a sender on a domain verified in Resend, e.g. "Website <estimates@costabamacabinets.com>"
 //   WEBHOOK_URL     – optional; each request is also POSTed here as JSON (Make, Zapier, a CRM)
 
 interface Env {
+  ASSETS: Fetcher;
   RESEND_API_KEY?: string;
   TO_EMAIL?: string;
   FROM_EMAIL?: string;
@@ -14,10 +15,26 @@ interface Env {
 
 const FIELDS = ['name', 'phone', 'email', 'town', 'project', 'message'] as const;
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export default {
+  async fetch(request, env): Promise<Response> {
+    const url = new URL(request.url);
+    if (url.pathname === '/api/estimate') {
+      if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: { Allow: 'POST' } });
+      return handleEstimate(request, env);
+    }
+    return env.ASSETS.fetch(request);
+  },
+} satisfies ExportedHandler<Env>;
+
+async function handleEstimate(request: Request, env: Env): Promise<Response> {
   const back = (query: string) => Response.redirect(new URL(`/contact/?${query}`, request.url).toString(), 303);
 
-  const form = await request.formData();
+  let form: FormData;
+  try {
+    form = await request.formData();
+  } catch {
+    return back('error=1');
+  }
 
   // Bots fill the hidden "company" field; pretend it worked.
   if (form.get('company')) return back('sent=1');
@@ -64,4 +81,4 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const ok = results.some((r) => r.status === 'fulfilled' && r.value.ok);
   if (!ok) console.error('Estimate form delivery failed', results);
   return back(ok ? 'sent=1' : 'error=1');
-};
+}

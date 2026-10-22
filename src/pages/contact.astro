@@ -19,7 +19,7 @@ const towns = [...areas.map((a) => a.name), ...otherAreas, 'Other'];
   </section>
 
   <section class="section wrap layout">
-    <!-- Handled by the Cloudflare Pages Function in functions/api/estimate.ts -->
+    <!-- Handled by the Cloudflare Worker in worker/index.ts -->
     <form class="card form" name="estimate" method="POST" action="/api/estimate">
       <p class="hp"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
 

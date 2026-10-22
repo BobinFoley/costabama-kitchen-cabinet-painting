@@ -1,6 +1,6 @@
 # Costa Bama Kitchen Cabinet Repainting
 
-Marketing site for a kitchen cabinet repainting business in Gulf Shores, AL. Built with Astro (static output) and hosted on Cloudflare Pages.
+Marketing site for a kitchen cabinet repainting business in Gulf Shores, AL. Built with Astro (static output) and hosted on Cloudflare Workers (static assets plus a small Worker for the estimate form).
 
 ## Pages
 
@@ -17,21 +17,23 @@ Requires Node 22.12 or newer.
 ```sh
 npm install
 npm run dev       # Astro dev server at http://localhost:4321
-npm run cf:dev    # build, then run with Cloudflare's runtime (includes the form handler)
+npm run cf:dev    # build, then run the Worker locally with Cloudflare's runtime (includes the form handler)
 ```
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare
 
-1. Cloudflare dashboard > Workers & Pages > Create > Pages > Connect to Git, and pick this repository.
-2. Build settings: framework preset **Astro**, build command `npm run build`, output directory `dist`.
-3. Under Settings > Variables and Secrets, add an environment variable `NODE_VERSION` = `22`, plus the form settings below.
-4. Add your custom domain under Custom domains.
+The repo is connected to a Cloudflare Worker with Git builds:
 
-Or deploy from your machine with `npm run deploy` (runs `wrangler pages deploy`, after `npx wrangler login`).
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+
+`wrangler.toml` points the Worker at `worker/index.ts` and serves the built site from `dist/`. Every push to `main` redeploys.
+
+To deploy from your own machine instead: `npx wrangler login`, then `npm run deploy`.
 
 ## Estimate form
 
-`/contact/` posts to the Pages Function in `functions/api/estimate.ts`. It needs at least one delivery method set in the Pages project's variables:
+`/contact/` posts to `/api/estimate`, handled by `worker/index.ts`. It needs at least one delivery method set under the Worker's Settings > Variables and Secrets:
 
 | Variable | Purpose |
 | --- | --- |

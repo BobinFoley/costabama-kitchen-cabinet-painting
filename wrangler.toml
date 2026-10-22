@@ -1,3 +1,9 @@
 name = "costabama-kitchen-cabinet-painting"
-pages_build_output_dir = "./dist"
+main = "worker/index.ts"
 compatibility_date = "2026-09-15"
+
+# The built Astro site. Static files are served directly; anything else
+# (the estimate form at /api/estimate) goes to the Worker script.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
