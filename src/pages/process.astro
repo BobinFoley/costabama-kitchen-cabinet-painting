@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { process } from '../data/site';
+---
+<Base
+  title="Our 5-Day Cabinet Painting Process"
+  description="What happens each day when Costa Bama repaints your kitchen cabinets: protect, prep, prime, finish and reinstall in about five working days."
+>
+  <header class="wrap page-head">
+    <p class="eyebrow">Our process</p>
+    <h1>The 5-day kitchen</h1>
+    <p class="lede">A typical kitchen of 25 to 35 doors and drawers runs Monday through Friday. Here is what to expect, and what your kitchen looks like each evening.</p>
+  </header>
+
+  <section class="section wrap">
+    <ol class="days">
+      {process.map((step) => (
+        <li class="day">
+          <div class="day-label">
+            <span class="mono">{step.day}</span>
+          </div>
+          <div class="stack">
+            <h2>{step.title}</h2>
+            <p>{step.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="band section">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <p class="eyebrow">Before day one</p>
+        <h2>How to get ready</h2>
+        <p class="lede">We handle the heavy lifting. A few things help the week go smoothly.</p>
+      </div>
+      <ul class="check-list">
+        <li>Empty the cabinets you want painted inside, or just the ones we need to reach</li>
+        <li>Set up a small coffee and snack station in another room</li>
+        <li>Plan for pets to stay out of the kitchen during spraying and drying</li>
+        <li>If you are in a condo, let us know your building's work hours and elevator rules</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section wrap prose">
+    <p class="eyebrow">After we leave</p>
+    <h2>Curing takes longer than drying</h2>
+    <p>The finish is dry to the touch the day we reinstall, but cabinet enamels keep hardening for two to four weeks, longer in humid summer months. Until then, wipe spills with a soft damp cloth, avoid harsh cleaners, and do not hang wet towels over doors.</p>
+    <p>If a door gets nicked in the first year, call us. We leave labeled touch-up paint with every job.</p>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .days { list-style: none; padding: 0; margin: 0; display: grid; }
+  .day {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 1.5rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .day:last-child { border-bottom: 1px solid var(--line); }
+  .day .stack { max-width: 60ch; }
+  .day p { color: var(--muted); }
+  .day h2 { font-size: var(--step-2); }
+  .mono {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--gulf);
+    color: var(--gulf-ink);
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .day { grid-template-columns: 1fr; gap: 0.75rem; }
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { areas, process, faqs, type Area } from '../../data/site';
+
+export function getStaticPaths() {
+  return areas.map((area) => ({ params: { slug: area.slug }, props: { area } }));
+}
+
+const { area } = Astro.props as { area: Area };
+const nearby = areas.filter((a) => a.slug !== area.slug);
+---
+<Base
+  title={`Cabinet Painting in ${area.name}, AL`}
+  description={`Kitchen cabinet repainting in ${area.name}, Alabama for ${area.homes}. Cabinet-grade sprayed finishes in about five working days. Free estimates.`}
+>
+  <header class="wrap page-head">
+    <p class="eyebrow"><a href="/service-areas/">Service areas</a> / {area.name}</p>
+    <h1>Kitchen cabinet painting in {area.name}</h1>
+    <p class="lede">{area.blurb}</p>
+  </header>
+
+  <section class="section wrap grid-2">
+    <div class="prose">
+      {area.intro.map((p) => <p>{p}</p>)}
+      <p>{area.drive}</p>
+    </div>
+    <div class="card">
+      <h2 class="h3">Where we work in {area.name}</h2>
+      <ul class="chips">
+        {area.neighborhoods.map((n) => <li>{n}</li>)}
+      </ul>
+      <p>Not on the list? We probably still come to you.</p>
+    </div>
+  </section>
+
+  <section class="band section">
+    <div class="wrap stack-lg">
+      <h2>Your {area.name} kitchen, day by day</h2>
+      <ol class="mini">
+        {process.map((s) => (
+          <li><span class="mono">{s.day}</span> {s.title}</li>
+        ))}
+      </ol>
+      <p><a class="on-band" href="/process/">Read the full process →</a></p>
+    </div>
+  </section>
+
+  <section class="section wrap grid-2">
+    <div class="stack">
+      <p class="eyebrow">Common questions</p>
+      <h2>Before you book</h2>
+    </div>
+    <dl class="qa">
+      {faqs.slice(0, 3).map((f) => (
+        <div><dt>{f.q}</dt><dd>{f.a}</dd></div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="section-tight wrap stack">
+    <h2 class="h3">Nearby areas</h2>
+    <p class="links">
+      {nearby.map((a) => <a href={`/service-areas/${a.slug}/`}>Cabinet painting in {a.name}</a>)}
+    </p>
+  </section>
+
+  <CtaBand heading={`Free estimates in ${area.name}`} />
+</Base>
+
+<style>
+  .eyebrow a { color: inherit; }
+  .h3 { font-size: var(--step-1); }
+  .mini { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+  .mini li { display: grid; gap: 0.25rem; font-weight: 600; }
+  .mono { font-family: var(--font-mono); font-size: var(--step--1); color: var(--sun); font-weight: 500; }
+  .on-band { color: var(--band-ink); }
+  .qa { margin: 0; display: grid; gap: 1.25rem; }
+  dt { font-weight: 600; }
+  dd { margin: 0.25rem 0 0; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+</style>

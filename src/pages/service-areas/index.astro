@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { business, areas, otherAreas } from '../../data/site';
+---
+<Base
+  title="Service Areas"
+  description="Costa Bama repaints kitchen cabinets in Gulf Shores, Orange Beach, Foley, Fairhope, Fort Morgan, Daphne, Spanish Fort and across Baldwin County, Alabama."
+>
+  <header class="wrap page-head">
+    <p class="eyebrow">Service areas</p>
+    <h1>Gulf Shores and the surrounding coast</h1>
+    <p class="lede">We are based in {business.city} and work throughout south {business.county}. If you are not sure whether we come to you, ask.</p>
+  </header>
+
+  <section class="section wrap stack-lg">
+    <div class="grid-2">
+      {areas.map((a) => (
+        <a class="card area" href={`/service-areas/${a.slug}/`}>
+          <h2>{a.name}</h2>
+          <p>{a.blurb}</p>
+          <p class="drive">{a.drive}</p>
+          <span class="more">Cabinet painting in {a.name} →</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="stack">
+      <h2 class="h3">Also serving</h2>
+      <ul class="chips">
+        {otherAreas.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .area { text-decoration: none; color: var(--ink); }
+  .area:hover { border-color: var(--gulf); }
+  .area h2 { font-size: var(--step-2); }
+  .drive { font-size: var(--step--1); }
+  .more { color: var(--gulf); font-weight: 600; }
+  .h3 { font-size: var(--step-1); }
+</style>

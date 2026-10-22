@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { business } from '../data/site';
+---
+<Base
+  title="About Us"
+  description="Costa Bama is a Gulf Shores cabinet painting company focused on one thing: durable, factory-smooth cabinet finishes for coastal Alabama homes."
+>
+  <header class="wrap page-head">
+    <p class="eyebrow">About</p>
+    <h1>One trade, done well</h1>
+  </header>
+
+  <section class="section wrap grid-2">
+    <div class="prose">
+      <p class="lede">{business.name} is a {business.city} company that paints cabinets and nothing else. No walls, no exteriors, no decks.</p>
+      <p>Cabinets are the hardest thing in a house to paint well. They get grabbed, bumped, steamed and wiped every day. A finish that looks fine on a wall will chip on a cabinet door in months. Doing only cabinets lets us keep the right sprayers, primers and drying setup for the job, and lets our crew get very good at it.</p>
+      <p>We started the business because so many kitchens along the coast are in good shape structurally but look dated: honey oak, cherry stain, or builder white that has gone yellow. Repainting is usually the fastest and most affordable way to fix that.</p>
+      <!-- TODO: add owner name, founding year and a short personal story -->
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h3>How we work</h3>
+        <ul class="check-list">
+          <li>A written quote with a fixed price</li>
+          <li>A written schedule with start and finish dates</li>
+          <li>The same crew from start to finish</li>
+          <li>Licensed and insured, with certificates available for HOAs</li>
+          <li>A clean job site every evening</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Why the name</h3>
+        <p>"Costa Bama" is what a lot of locals call the stretch of Alabama coast from Fort Morgan to Perdido. It is where we live and where we work.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

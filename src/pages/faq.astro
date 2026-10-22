@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqs } from '../data/site';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<Base
+  title="Cabinet Painting FAQ"
+  description="Answers to common questions about kitchen cabinet repainting in Gulf Shores: timing, paint, cost, oak grain, humidity and condo work."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <header class="wrap page-head">
+    <p class="eyebrow">FAQ</p>
+    <h1>Questions we hear at every estimate</h1>
+  </header>
+
+  <section class="section wrap">
+    <div class="faq">
+      {faqs.map((f, i) => (
+        <details open={i === 0}>
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+    <p class="more">Have a question that is not here? <a href="/contact/">Send it to us.</a></p>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .faq { max-width: 50rem; border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary {
+    cursor: pointer;
+    padding: 1.25rem 2.5rem 1.25rem 0;
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    list-style: none;
+    position: relative;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+';
+    position: absolute;
+    right: 0.5rem;
+    top: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    color: var(--gulf);
+  }
+  details[open] summary::after { content: '−'; }
+  details p { padding-bottom: 1.25rem; color: var(--muted); max-width: 65ch; }
+  .more { margin-top: 2rem; }
+</style>

@@ -1,0 +1,41 @@
+---
+import { business, nav, areas } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="band site-footer">
+  <div class="wrap cols section-tight">
+    <div class="stack">
+      <p class="name">{business.name}</p>
+      <p class="muted">Cabinet repainting for {business.city} and the rest of south {business.county}, Alabama.</p>
+      <p><a href={business.phoneHref}>{business.phone}</a><br /><a href={`mailto:${business.email}`}>{business.email}</a></p>
+      <p class="muted small">{business.hours}</p>
+    </div>
+    <div class="stack">
+      <p class="eyebrow">Pages</p>
+      <ul>
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+    <div class="stack">
+      <p class="eyebrow">Areas</p>
+      <ul>
+        {areas.map((a) => <li><a href={`/service-areas/${a.slug}/`}>{a.name}</a></li>)}
+        <li><a href="/service-areas/">All service areas</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p class="small muted">© {year} {business.name}. Licensed and insured.</p>
+  </div>
+</footer>
+
+<style>
+  .cols { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+  .name { font-family: var(--font-display); font-size: var(--step-1); }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.4rem; }
+  a { color: var(--band-ink); }
+  .muted { color: color-mix(in srgb, var(--band-ink) 70%, transparent); }
+  .small { font-size: var(--step--1); }
+  .legal { padding-block: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--band-ink) 15%, transparent); }
+</style>

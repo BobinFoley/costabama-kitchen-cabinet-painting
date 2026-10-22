@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import ShakerDoor from '../components/ShakerDoor.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { colors } from '../data/site';
+---
+<Base
+  title="Cabinet Color Ideas for Coastal Kitchens"
+  description="Cabinet paint color ideas for Gulf Shores and Orange Beach kitchens: warm whites, sea-glass greens, coastal navy and more."
+>
+  <header class="wrap page-head">
+    <p class="eyebrow">Colors</p>
+    <h1>Cabinet colors that work on the coast</h1>
+    <p class="lede">Bright Gulf light washes out pale colors and makes some whites look cold. These are the directions our clients pick most often. We bring real paint samples to your estimate and paint a sample board in your kitchen's light.</p>
+  </header>
+
+  <section class="section wrap">
+    <ul class="swatches">
+      {colors.map((c) => (
+        <li class="chip">
+          <div class="chip-door"><ShakerDoor color={c.hex} label={`${c.name} cabinet door`} /></div>
+          <div class="chip-body">
+            <h2>{c.name}</h2>
+            <p>{c.note}</p>
+            <span class="mono">{c.hex}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <p class="note">Screen colors are approximate. Your final color is chosen from manufacturer paint chips and a sample board, and can be matched to any brand's color.</p>
+  </section>
+
+  <section class="band section">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <p class="eyebrow">Sheen</p>
+        <h2>Satin or semi-gloss?</h2>
+      </div>
+      <div class="stack">
+        <p><strong>Satin</strong> is our default. It hides minor surface texture and looks closest to a factory finish.</p>
+        <p><strong>Semi-gloss</strong> is a little easier to wipe and suits rentals and busy family kitchens, but it shows every dent and brush mark on older doors.</p>
+        <p><strong>Matte</strong> cabinet finishes look great in photos, but we only recommend them on doors that will not see much handling.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="See colors in your own kitchen" text="We bring sample chips and paint a test board so you can see the color under your lights before you commit." />
+</Base>
+
+<style>
+  .swatches {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  }
+  .chip {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .chip-door { padding: 1.5rem 3rem; background: var(--sand); }
+  .chip-body { padding: 1rem 1.25rem 1.25rem; display: grid; gap: 0.4rem; align-content: start; }
+  .chip-body h2 { font-size: var(--step-1); }
+  .chip-body p { color: var(--muted); font-size: var(--step--1); }
+  .mono { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); }
+  .note { margin-top: 1.5rem; color: var(--muted); font-size: var(--step--1); max-width: 65ch; }
+</style>

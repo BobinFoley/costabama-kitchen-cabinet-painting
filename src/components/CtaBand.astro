@@ -1,0 +1,30 @@
+---
+import { business } from '../data/site';
+interface Props {
+  heading?: string;
+  text?: string;
+}
+const {
+  heading = 'Get a fixed price for your kitchen',
+  text = 'We come out, count doors and drawers, look at the condition of the cabinets and give you a written quote. No charge, no pressure.',
+} = Astro.props;
+---
+<section class="cta">
+  <div class="wrap inner section-tight">
+    <div class="stack">
+      <h2>{heading}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-dark" href="/contact/">Book a free estimate</a>
+      <a class="btn btn-ghost" href={business.phoneHref}>Call {business.phone}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta { background: var(--sun); color: var(--sun-ink); }
+  .inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .inner .stack { max-width: 40rem; }
+  .btn-dark { background: #16242e; color: #ffffff; }
+</style>
