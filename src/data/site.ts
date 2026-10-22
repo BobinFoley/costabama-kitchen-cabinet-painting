@@ -3,8 +3,8 @@ export const business = {
   name: 'Coastal Bama Kitchen Cabinet Repainting',
   shortName: 'Coastal Bama',
   tagline: 'Factory-smooth cabinet finishes for Gulf Coast kitchens',
-  phone: '(251) 555-0123', // TODO: real phone number
-  phoneHref: 'tel:+12515550123', // TODO: match the phone number above
+  phone: '(251) 765-0333',
+  phoneHref: 'tel:+12517650333',
   email: 'hello@coastalbamacabinets.com', // TODO: real email
   city: 'Gulf Shores',
   region: 'AL',
