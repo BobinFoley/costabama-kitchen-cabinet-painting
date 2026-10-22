@@ -1,4 +1,4 @@
-# Costa Bama Kitchen Cabinet Repainting
+# Coastal Bama Kitchen Cabinet Repainting
 
 Marketing site for a kitchen cabinet repainting business in Gulf Shores, AL. Built with Astro (static output) and hosted on Cloudflare Workers (static assets plus a small Worker for the estimate form).
 

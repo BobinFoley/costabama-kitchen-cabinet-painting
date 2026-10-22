@@ -1,11 +1,11 @@
 // Business details used across every page. Fill in the TODO values before launch.
 export const business = {
-  name: 'Costa Bama Kitchen Cabinet Repainting',
-  shortName: 'Costa Bama',
+  name: 'Coastal Bama Kitchen Cabinet Repainting',
+  shortName: 'Coastal Bama',
   tagline: 'Factory-smooth cabinet finishes for Gulf Coast kitchens',
   phone: '(251) 555-0123', // TODO: real phone number
   phoneHref: 'tel:+12515550123', // TODO: match the phone number above
-  email: 'hello@costabamacabinets.com', // TODO: real email
+  email: 'hello@coastalbamacabinets.com', // TODO: real email
   city: 'Gulf Shores',
   region: 'AL',
   county: 'Baldwin County',
@@ -42,7 +42,7 @@ export const areas: Area[] = [
     drive: 'We are based here, so most Gulf Shores homes are a short drive from the shop.',
     intro: [
       'Gulf Shores kitchens work hard. Salt air, summer humidity and a steady stream of guests wear down cabinet finishes faster than they would inland. Oak cabinets from the 1990s and builder-grade white paint that has yellowed are the two things we see most.',
-      'Repainting gives you a new-looking kitchen without tearing out boxes that are still solid. We spray doors and drawer fronts off-site, refinish the frames in place, and keep the kitchen usable in the evenings while the job runs.',
+      'Repainting gives you a new-looking kitchen without tearing out boxes that are still solid. We spray doors and drawer fronts off-site, and refinish the frames in place. Plan to be out of the kitchen while we work so the new finish can dry and cure without marks.',
     ],
   },
   {
@@ -148,7 +148,7 @@ export const faqs = [
   },
   {
     q: 'Can we use the kitchen during the job?',
-    a: 'Yes, with limits. The sink, fridge and stove stay connected. Shelves stay accessible after the first day, though we ask that you keep cabinets closed and avoid leaning on fresh paint.',
+    a: 'Plan on not using it. Fresh cabinet paint has to dry and cure, and steam, grease, bumps and fingerprints leave permanent marks. Set up a small temporary kitchen in another room for the week. After we reinstall, keep treating the cabinets gently for a few weeks while the finish fully hardens.',
   },
   {
     q: 'What paint do you use?',

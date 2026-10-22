@@ -2,7 +2,7 @@
 // Set these in Cloudflare (Worker > Settings > Variables and Secrets):
 //   RESEND_API_KEY  – API key from resend.com, to email each request
 //   TO_EMAIL        – where requests are sent, e.g. the owner's inbox
-//   FROM_EMAIL      – a sender on a domain verified in Resend, e.g. "Website <estimates@costabamacabinets.com>"
+//   FROM_EMAIL      – a sender on a domain verified in Resend, e.g. "Website <estimates@coastalbamacabinets.com>"
 //   WEBHOOK_URL     – optional; each request is also POSTed here as JSON (Make, Zapier, a CRM)
 
 interface Env {
@@ -67,7 +67,7 @@ async function handleEstimate(request: Request, env: Env): Promise<Response> {
       fetch(env.WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, submitted_at: new Date().toISOString(), source: 'costa-bama-website' }),
+        body: JSON.stringify({ ...data, submitted_at: new Date().toISOString(), source: 'coastal-bama-website' }),
       }),
     );
   }
