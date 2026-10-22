@@ -27,6 +27,7 @@ const year = new Date().getFullYear();
   </div>
   <div class="wrap legal">
     <p class="small muted">© {year} {business.name}. Licensed and insured.</p>
+    <p class="small muted">Website design and marketing by Bob at <a href="https://micromanagedmedia.com" target="_blank" rel="noopener">micromanagedmedia.com</a></p>
   </div>
 </footer>
 
@@ -37,5 +38,5 @@ const year = new Date().getFullYear();
   a { color: var(--band-ink); }
   .muted { color: color-mix(in srgb, var(--band-ink) 70%, transparent); }
   .small { font-size: var(--step--1); }
-  .legal { padding-block: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--band-ink) 15%, transparent); }
+  .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; padding-block: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--band-ink) 15%, transparent); }
 </style>
